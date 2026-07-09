@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotary Club Val d'Orcia — Servire, nel cuore della Val d'Orcia</title>
+<meta name="description" content="Il Rotary Club Val d'Orcia riunisce professionisti e volontari al servizio della comunità. Distretto 2071 — Toscana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A2540; --navy-deep:#071726; --azure:#005DAA; --gold:#F7A81B;
+    --ink:#4A5B6E; --caption:#7A8896;
+    --bg:#FFFFFF; --bg-soft:#F4F8FD; --card:#F7FAFD; --border:#E4ECF5; --tint:#EAF1FA;
+    --maxw:1120px; --nav-h:88px;
+    --serif:"Playfair Display",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--navy);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+  section{scroll-margin-top:90px}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* eyebrow */
+  .eyebrow{display:inline-flex;align-items:center;gap:13px;font-size:13px;font-weight:600;letter-spacing:2.4px;color:var(--azure)}
+  .eyebrow::before{content:"";width:42px;height:2px;background:var(--gold)}
+  .eyebrow.center::after{content:"";width:28px;height:2px;background:var(--gold)}
+  .eyebrow.gold{color:var(--gold)}
+  .eyebrow.gold::before{background:var(--gold)}
+
+  h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--navy);line-height:1.14}
+  .lead{color:var(--ink);font-size:17px;line-height:1.72}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:16px 30px;border-radius:4px;font-weight:600;font-size:15px;letter-spacing:.2px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease}
+  .btn svg{transition:transform .25s ease}
+  .btn:hover svg{transform:translateX(4px)}
+  .btn-gold{background:var(--gold);color:var(--navy)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(247,168,27,.32)}
+  .btn-white{background:#fff;color:var(--navy)}
+  .btn-outline-light{border-color:rgba(255,255,255,.85);color:#fff}
+  .btn-outline-light:hover{background:rgba(255,255,255,.1)}
+  .btn-outline-navy{border-color:#3A5573;color:#fff}
+  .btn-outline-navy:hover{background:rgba(255,255,255,.06)}
+
+  .gear{width:34px;height:34px;flex:none}
+
+  /* ---------- NAV ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--nav-h);transition:background .3s ease,box-shadow .3s ease,height .3s ease,color .3s ease;color:#fff}
+  header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:13px}
+  .brand .gear{color:#fff;transition:color .3s ease}
+  .brand-name{font-weight:700;font-size:15px;letter-spacing:1.4px;line-height:1.15}
+  .brand-sub{font-weight:500;font-size:10.5px;letter-spacing:3.2px;color:var(--gold)}
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a{font-size:14.5px;font-weight:500;opacity:.9;transition:opacity .2s ease,color .2s ease}
+  .nav-links a:hover{opacity:1}
+  .nav-cta{background:#fff;color:var(--navy);padding:14px 26px;border-radius:4px;font-weight:600;font-size:14.5px;transition:transform .2s ease,box-shadow .2s ease}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+  header.scrolled{background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);box-shadow:0 1px 0 rgba(10,37,64,.08),0 10px 30px rgba(10,37,64,.06);color:var(--navy);height:74px}
+  header.scrolled .brand .gear{color:var(--azure)}
+  header.scrolled .nav-links a{opacity:.85}
+  header.scrolled .nav-cta{background:var(--azure);color:#fff}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:640px;height:100vh;max-height:940px;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy)}
+  .hero-media{position:absolute;left:0;right:0;top:-8%;height:116%;width:100%;object-fit:cover;will-change:transform}
+  .hero::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(180deg,rgba(8,25,43,.12) 0%,rgba(8,25,43,.34) 46%,rgba(8,25,43,.92) 100%),
+    linear-gradient(90deg,rgba(8,25,43,.55) 0%,rgba(8,25,43,0) 58%)}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:132px}
+  .hero .eyebrow{color:#fff}
+  .hero h1{color:#fff;font-weight:600;font-size:clamp(40px,6.6vw,78px);margin:22px 0 24px;letter-spacing:-.5px}
+  .hero p{color:rgba(255,255,255,.9);font-size:19px;line-height:1.62;max-width:560px;margin-bottom:34px}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+  .scroll-cue{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.85)}
+  .scroll-cue span{font-size:11px;letter-spacing:2.5px;font-weight:500}
+  .scroll-cue i{width:1px;height:42px;background:rgba(255,255,255,.55);animation:cue 2.2s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:scaleY(.5);opacity:.4;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
+
+  /* fade-up hero content on load */
+  .hero-inner>*{opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero-inner>*:nth-child(1){animation-delay:.15s}
+  .hero-inner>*:nth-child(2){animation-delay:.28s}
+  .hero-inner>*:nth-child(3){animation-delay:.41s}
+  .hero-inner>*:nth-child(4){animation-delay:.54s}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:130px 0}
+  .about-grid{display:grid;grid-template-columns:1fr 484px;gap:96px;align-items:center}
+  .about h2{font-size:clamp(30px,3.4vw,44px);margin:22px 0 10px}
+  .about .lead{margin-top:14px;max-width:520px}
+  .quote-inline{display:flex;gap:18px;margin-top:26px}
+  .quote-inline::before{content:"";width:3px;background:var(--azure);border-radius:2px;flex:none}
+  .quote-inline p{font-family:var(--serif);font-size:18px;line-height:1.55;color:var(--navy)}
+  .about-figure figcaption{margin-top:14px;font-size:13px;color:var(--caption)}
+  .about-figure img{width:100%;height:568px;object-fit:cover;border-radius:6px}
+
+  /* ---------- STATS ---------- */
+  .stats{background:var(--bg-soft);padding:74px 0}
+  .stats-row{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+  .stat{min-width:130px}
+  .stat-num{font-family:var(--serif);font-weight:500;font-size:54px;color:var(--azure);line-height:1}
+  .stat-label{margin-top:8px;font-size:15px;font-weight:500;color:var(--ink)}
+
+  /* ---------- AREAS ---------- */
+  .areas{padding:130px 0}
+  .areas-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px}
+  .areas-head h2{font-size:clamp(30px,3.4vw,44px);margin-top:20px}
+  .areas-head .note{max-width:360px;color:var(--ink);font-size:17px;line-height:1.65}
+  .areas-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:36px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(10,37,64,.09);border-color:#d7e3f1}
+  .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .card-ic{width:54px;height:54px;border-radius:12px;background:var(--tint);display:flex;align-items:center;justify-content:center}
+  .card-ic svg{width:24px;height:24px;color:var(--azure)}
+  .card-num{font-family:var(--serif);font-size:24px;color:#C4D2E2}
+  .card h3{font-size:23px;margin-bottom:12px}
+  .card p{font-size:15px;color:var(--ink);line-height:1.6}
+  .card-cta{background:var(--navy);border:none;color:#fff;display:flex;flex-direction:column;justify-content:center}
+  .card-cta:hover{box-shadow:0 18px 40px rgba(10,37,64,.22)}
+  .card-cta h3{color:#fff;font-size:26px;margin-bottom:14px}
+  .card-cta p{color:rgba(255,255,255,.82);margin-bottom:18px}
+  .card-cta a{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-weight:600;font-size:15px}
+  .card-cta a svg{width:20px;height:20px;color:var(--gold);transition:transform .25s ease}
+  .card-cta:hover a svg{transform:translateX(4px)}
+
+  /* ---------- QUOTE / PARALLAX ---------- */
+  .quote{position:relative;padding:140px 0;text-align:center;color:#fff;background:linear-gradient(rgba(10,31,51,.68),rgba(10,31,51,.68)),url("images/parallax.jpg") center/cover no-repeat fixed}
+  .quote .gear{color:var(--gold);width:40px;height:40px;margin:0 auto 26px}
+  .quote blockquote{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3.2vw,40px);line-height:1.32;max-width:860px;margin:0 auto 22px}
+  .quote .attrib{font-size:13px;font-weight:600;letter-spacing:2.6px;color:var(--gold)}
+
+  /* ---------- JOIN ---------- */
+  .join{background:var(--navy);color:#fff;padding:118px 0;text-align:center}
+  .join .eyebrow{color:var(--gold);justify-content:center}
+  .join h2{color:#fff;font-size:clamp(34px,4.6vw,52px);margin:24px 0 22px}
+  .join p{max-width:600px;margin:0 auto 34px;color:rgba(255,255,255,.85);font-size:18px;line-height:1.62}
+  .join-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy-deep);color:#fff;padding:86px 0 40px}
+  .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
+  .foot-brand .brand{margin-bottom:22px}
+  .foot-brand .gear{color:#fff}
+  .foot-brand p{font-size:15px;line-height:1.66;color:rgba(255,255,255,.6);max-width:360px;margin-bottom:22px}
+  .social{display:flex;gap:12px}
+  .social a{width:40px;height:40px;border-radius:20px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:background .2s ease}
+  .social a:hover{background:rgba(255,255,255,.18)}
+  .social svg{width:20px;height:20px}
+  .fcol h4{font-size:13px;font-weight:600;letter-spacing:1.6px;color:rgba(255,255,255,.5);margin-bottom:18px}
+  .fcol a,.fcol p{display:block;font-size:15px;color:rgba(255,255,255,.82);line-height:1.5;margin-bottom:14px}
+  .fcol a{transition:color .2s ease}
+  .fcol a:hover{color:var(--gold)}
+  .foot-div{height:1px;background:rgba(255,255,255,.12);margin:52px 0 22px}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,.5)}
+  .foot-bottom .links{display:flex;gap:26px}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:960px){
+    .about-grid{grid-template-columns:1fr;gap:48px}
+    .about-figure img{height:auto;aspect-ratio:3/3.2}
+    .foot-top{grid-template-columns:1fr 1fr}
+    .foot-brand{grid-column:1/-1}
+  }
+  @media (max-width:860px){
+    .nav-links{display:none}
+    .areas-head{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width:760px){
+    .areas-grid{grid-template-columns:1fr}
+    .wrap{padding:0 22px}
+    .about,.areas{padding:88px 0}
+    .quote{background-attachment:scroll}
+    .stat{min-width:44%}
+    .foot-bottom{flex-direction:column;align-items:flex-start}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal,.hero-inner>*{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+    .scroll-cue i{animation:none}
+    html{scroll-behavior:auto}
+    .quote{background-attachment:scroll}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Rotary Club Val d'Orcia">
+      <svg class="gear" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.4" stroke-dasharray="1.3 1.05"/><circle cx="12" cy="12" r="5.4" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/></svg>
+      <span><span class="brand-name">ROTARY CLUB</span><br><span class="brand-sub">VAL D'ORCIA</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#aree">Aree di intervento</a>
+      <a href="#progetti">Progetti</a>
+      <a href="#eventi">Eventi</a>
+    </nav>
+    <a class="nav-cta" href="#unisciti">Diventa socio</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-media" id="heroMedia" src="images/hero.jpg" alt="Il paesaggio della Val d'Orcia con colline e cipressi in Toscana">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">DISTRETTO 2071 · TOSCANA · DAL 1998</span>
+      <h1>Servire, nel cuore<br>della Val d'Orcia.</h1>
+      <p>Donne e uomini che uniscono competenze e passione per servire la comunità, sostenere i giovani e custodire il paesaggio che amiamo.</p>
+      <div class="hero-btns">
+        <a class="btn btn-gold" href="#unisciti">Unisciti al Club</a>
+        <a class="btn btn-outline-light" href="#aree">Scopri i progetti</a>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>SCORRI</span><i></i></div>
+  </section>
+
+  <!-- CHI SIAMO -->
+  <section class="about" id="chi-siamo">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow reveal">CHI SIAMO</span>
+        <h2 class="reveal">Un club di persone,<br>radicato in un paesaggio<br>patrimonio dell'umanità.</h2>
+        <p class="lead reveal">Il Rotary Club Val d'Orcia riunisce professionisti, imprenditori e volontari che condividono un impegno semplice: mettere le proprie competenze al servizio del territorio. Ogni settimana ci incontriamo per trasformare le idee in progetti concreti.</p>
+        <p class="lead reveal">Dal 2024 lavoriamo tra Pienza, Castiglione d'Orcia e San Quirico d'Orcia, insieme a Rotary International e ai suoi 1,4 milioni di soci nel mondo, uniti dal motto "Servire al di sopra di ogni interesse personale".</p>
+        <div class="quote-inline reveal"><p>"Piccoli gesti, moltiplicati da milioni di persone,<br>possono trasformare il mondo."</p></div>
+      </div>
+      <figure class="about-figure reveal">
+        <img src="images/about.jpg" alt="Podere con cipressi nella campagna di San Quirico d'Orcia al tramonto">
+        <figcaption>San Quirico d'Orcia — nel cuore del territorio del Club.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap stats-row">
+      <div class="stat reveal"><div class="stat-num" data-count="2024">2024</div><div class="stat-label">Anno di fondazione</div></div>
+      <div class="stat reveal"><div class="stat-num" data-count="30">30</div><div class="stat-label">Soci attivi</div></div>
+      <div class="stat reveal"><div class="stat-num">aaaa+</div><div class="stat-label">Progetti realizzati</div></div>
+      <div class="stat reveal"><div class="stat-num">€aaaaa</div><div class="stat-label">Raccolti per la comunità</div></div>
+    </div>
+  </section>
+
+  <!-- AREE DI INTERVENTO -->
+  <section class="areas" id="aree">
+    <div class="wrap">
+      <div class="areas-head">
+        <div>
+          <span class="eyebrow reveal">AREE DI INTERVENTO</span>
+          <h2 class="reveal">Dove concentriamo<br>le nostre energie.</h2>
+        </div>
+        <p class="note reveal">Sette aree in cui il Rotary genera un impatto duraturo, nel mondo e qui, in Val d'Orcia.</p>
+      </div>
+      <div class="areas-grid">
+        <article class="card reveal">
+          <div class="card-top"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 4V20M12 12.5 6.4 18M12 12.5 17.6 18"/></svg></div><span class="card-num">01</span></div>
+          <h3>Pace e prevenzione dei conflitti</h3><p>Formiamo nuove generazioni di costruttori di pace e sosteniamo il dialogo nelle comunità.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-top"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20C3 14 4 6.5 8.5 6 11 5.7 12 8 12 8 12 8 13 5.7 15.5 6 20 6.5 21 14 12 20Z"/></svg></div><span class="card-num">02</span></div>
+          <h3>Prevenzione e cura delle malattie</h3><p>Sosteniamo screening, prevenzione e l'accesso alle cure per chi ne ha più bisogno.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-top"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3C12 3 5 10.5 5 15a7 7 0 0 0 14 0C19 10.5 12 3 12 3Z"/></svg></div><span class="card-num">03</span></div>
+          <h3>Acqua e igiene</h3><p>Promuoviamo acqua pulita, servizi igienici e buone pratiche per una vita sana.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-top"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.6"/><circle cx="16" cy="11" r="2"/><path d="M3.5 20c0-3 2-5 4.5-5s4.5 2 4.5 5M13.5 20c0-2 1.2-3.4 2.5-3.4s2.5 1.4 2.5 3.4"/></svg></div><span class="card-num">04</span></div>
+          <h3>Salute materna e infantile</h3><p>Aiutiamo mamme e bambini ad avere accesso a cure di qualità nei primi anni di vita.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-top"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 22 9 12 14 2 9Z"/><path d="M6 11v4.5c0 1.6 3 3 6 3s6-1.4 6-3V11"/></svg></div><span class="card-num">05</span></div>
+          <h3>Istruzione di base</h3><p>Borse di studio, alfabetizzazione e sostegno ai giovani talenti del territorio.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-top"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V5M16 20V14M3 20H21"/></svg></div><span class="card-num">06</span></div>
+          <h3>Sviluppo economico</h3><p>Sosteniamo imprese locali, artigiani e giovani professionisti della Val d'Orcia.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-top"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4C10 4 4 10 5 20M5 20C8 12 13 8 18 7"/></svg></div><span class="card-num">07</span></div>
+          <h3>Ambiente</h3><p>Proteggiamo il paesaggio UNESCO, le acque e la biodiversità che rendono unica questa terra.</p>
+        </article>
+        <article class="card card-cta reveal">
+          <h3>Vuoi contribuire?</h3>
+          <p>Ogni area di intervento vive grazie a chi dona tempo, competenze e idee. C'è posto anche per te.</p>
+          <a href="#unisciti">Scopri come <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE / PARALLAX -->
+  <section class="quote">
+    <div class="wrap">
+      <svg class="gear" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.4" stroke-dasharray="1.3 1.05"/><circle cx="12" cy="12" r="5.4" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/></svg>
+      <blockquote>"Ci prendiamo cura delle persone e dei luoghi:<br>una comunità forte nasce da entrambi."</blockquote>
+      <div class="attrib">LO SPIRITO DEL ROTARY, DAL 1905</div>
+    </div>
+  </section>
+
+  <!-- DIVENTA SOCIO -->
+  <section class="join" id="unisciti">
+    <div class="wrap">
+      <span class="eyebrow center reveal">UNISCITI AL CLUB</span>
+      <h2 class="reveal">Il Rotary ha bisogno<br>di persone come te.</h2>
+      <p class="reveal">Che tu abbia tempo, competenze o semplicemente voglia di fare, c'è un posto per te attorno al nostro tavolo. Scrivici: iniziamo a conoscerci senza impegno.</p>
+      <div class="join-btns reveal">
+        <a class="btn btn-gold" href="mailto:info@rotaryvaldorcia.it">Diventa socio</a>
+        <a class="btn btn-outline-navy" href="mailto:info@rotaryvaldorcia.it">Scrivici</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="gear" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:36px;height:36px"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.4" stroke-dasharray="1.3 1.05"/><circle cx="12" cy="12" r="5.4" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/></svg>
+          <span><span class="brand-name" style="font-size:16px">ROTARY CLUB</span><br><span class="brand-sub" style="font-size:11px">VAL D'ORCIA</span></span>
+        </div>
+        <p>Professionisti e volontari al servizio della comunità della Val d'Orcia. Parte di Rotary International, Distretto 2071 — Toscana.</p>
+        <div class="social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path fill="#fff" d="M13.5 21v-7h2.3l.35-2.7H13.5V9.6c0-.78.22-1.3 1.33-1.3H16V5.9c-.25-.03-1.1-.1-2.1-.1-2.07 0-3.5 1.26-3.5 3.6v2H8v2.7h2.4V21z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="1.7"><rect x="4.5" y="4.5" width="15" height="15" rx="4.5"/><circle cx="12" cy="12" r="3.4"/></g><circle cx="16.4" cy="7.6" r="1.05" fill="#fff"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path fill="#fff" d="M6.94 8.5H4.5V20h2.44zM5.72 4.5A1.4 1.4 0 1 0 5.7 7.3a1.4 1.4 0 0 0 .02-2.8zM20 20h-2.44v-5.6c0-1.34-.48-2.25-1.68-2.25-.92 0-1.46.62-1.7 1.22-.09.21-.11.5-.11.8V20H11.6s.03-9.4 0-11.5h2.44v1.63c.32-.5.9-1.2 2.2-1.2 1.6 0 2.8 1.05 2.8 3.3z"/></svg></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>ESPLORA</h4>
+        <a href="#chi-siamo">Chi siamo</a>
+        <a href="#aree">Aree di intervento</a>
+        <a href="#progetti">Progetti</a>
+        <a href="#eventi">Eventi</a>
+        <a href="#unisciti">Diventa socio</a>
+      </div>
+      <div class="fcol">
+        <h4>IL ROTARY</h4>
+        <a href="https://www.rotary.org" target="_blank" rel="noopener">Rotary International</a>
+        <a href="https://www.rotary.org/it/about-rotary/rotary-foundation" target="_blank" rel="noopener">Fondazione Rotary</a>
+        <a href="#">Distretto 2071</a>
+        <a href="#">Rotaract &amp; Interact</a>
+      </div>
+      <div class="fcol">
+        <h4>CONTATTI</h4>
+        <p>Ci incontriamo ogni martedì, ore 20:00</p>
+        <p>Palazzo Comunale, San Quirico d'Orcia (SI)</p>
+        <a href="mailto:info@rotaryvaldorcia.it">info@rotaryvaldorcia.it</a>
+        <a href="tel:+390577000000">+39 0577 000 000</a>
+      </div>
+    </div>
+    <div class="foot-div"></div>
+    <div class="foot-bottom">
+      <span>© 2026 Rotary Club Val d'Orcia · Tutti i diritti riservati · Foto: Unsplash</span>
+      <div class="links"><a href="#">Privacy</a><a href="#">Cookie</a><a href="#">Credits</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Sticky nav state
+  const header = document.getElementById('site-header');
+  const onScrollNav = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  onScrollNav();
+  window.addEventListener('scroll', onScrollNav, {passive:true});
+
+  // Hero parallax
+  const heroMedia = document.getElementById('heroMedia');
+  if (heroMedia && !reduce){
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < window.innerHeight) heroMedia.style.transform = 'translateY(' + (y * 0.38) + 'px)';
+        ticking = false;
+      });
+    }, {passive:true});
+  }
+
+  // Scroll reveal with stagger inside grids
+  const reveals = document.querySelectorAll('.reveal');
+  if (reduce){
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    reveals.forEach(el => {
+      const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal'));
+      const idx = siblings.indexOf(el);
+      el.style.transitionDelay = Math.min(idx, 6) * 70 + 'ms';
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // Count-up stats
+  const nums = document.querySelectorAll('.stat-num[data-count]');
+  const animateCount = (el) => {
+    const target = parseInt(el.dataset.count, 10);
+    if (reduce){ el.textContent = target; return; }
+    const dur = 1400, start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io2 = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ animateCount(e.target); io2.unobserve(e.target); } });
+  }, {threshold:0.5});
+  nums.forEach(el => io2.observe(el));
+</script>
+</body>
+</html>
