@@ -1,0 +1,6 @@
+# Rotary Club Val d'Orcia Community
+User-agent: *
+Allow: /
+
+# Sitemap (aggiornare l'host se il dominio è diverso)
+Sitemap: https://www.rotaryclubvaldorcia.it/sitemap.xml
