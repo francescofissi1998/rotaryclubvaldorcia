@@ -1,0 +1,8 @@
+# Rotary Club Val d'Orcia Community
+# Solo caratteri ASCII e nessun BOM: alcuni crawler rifiutano il file
+# se trovano byte inattesi all'inizio.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.rotaryclubvaldorcia.it/sitemap.xml
